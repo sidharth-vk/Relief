@@ -1,0 +1,278 @@
+import 'package:flutter/material.dart';
+import 'package:relief/screens/widgets/ActiveAlertsBox.dart';
+import 'package:relief/screens/widgets/DisasterReliefBox.dart';
+import 'package:relief/screens/widgets/PreparednessGuideWidget.dart';
+import 'package:relief/screens/widgets/Weather.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    child: Text("U"),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hello User!",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              alignment: PlaceholderAlignment.middle,
+                              child: Icon(
+                                Icons.location_on,
+                                size: 15,
+                                color: Colors.green,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' Calicut, Kerala',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "ACTIVE ALERTS",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              AlertContainer(
+                title: "Heavy Rainfall Warning",
+                subTitle: "Flash Flood Risk",
+                location: "Calicut, Kerala",
+                borderColor: Colors.red, // Change the border color
+                badgeColor: Colors.red, // Change the badge color
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              AlertContainer(
+                title: "EarthQuick Warning",
+                subTitle: "Earthquick Risk",
+                location: "Calicut, Kerala",
+                borderColor: Colors.orange, // Change the border color
+                badgeColor: Colors.orange, // Change the badge color
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  // WeatherWidget with equal width
+                  Expanded(
+                    child: WeatherWidget(
+                      weatherType: 'thunderstorm',
+                      temperature: 25.3,
+                      location: 'New York',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: .1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: "Do you have an\n",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 19)),
+                              WidgetSpan(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    print("tapped");
+                                  },
+                                  child: Text(
+                                    "Emergency Plan?",
+                                    style: TextStyle(
+                                        fontSize: 23,
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Safety First, Plan Ahead",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(width: .1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: GestureDetector(
+                            child: Text(
+                              "Spot something critical? ",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        WidgetSpan(
+                          child: Text(
+                            "Report it Here",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              "\nShare real-time updates to help others stay safe.",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "DISASTER RELIEF",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              DisasterReliefBox(
+                title: "Find an Emergency Center",
+                ontap: () {},
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              DisasterReliefBox(
+                title: "Immediate Relief",
+                ontap: () {},
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              DisasterReliefBox(
+                ontap: () {},
+                title: "Apply for Assistance",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              DisasterReliefBox(
+                ontap: () {},
+                title: "Disaster Related FAQs",
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "PREPAREDNESS GUIDE",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Read More",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ],
+              ),
+              PreparednessGuide(),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Text(
+              //       "RELATED NEWS",
+              //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              //     ),
+              //     TextButton(
+              //       onPressed: () {},
+              //       child: Text(
+              //         "Read More",
+              //         style:
+              //             TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+              //       ),
+              //     ),
+              //   ],
+              // )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
