@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relief/controllers/settings/emergency_contacts_controller';
+import 'package:relief/controllers/settings/emergency_contacts_controller.dart';
 
 class EmergencyContactsPage extends StatelessWidget {
-  final EmergencyContactsController controller =
-      Get.put(EmergencyContactsController());
+  final EmergencySettingsController controller =
+      Get.put(EmergencySettingsController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class EmergencyContactsPage extends StatelessWidget {
             child: Obx(
               () {
                 return Text(
-                  controller.contacts.length.toString(),
+                  controller.emergencyContacts.length.toString(),
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 );
               },
@@ -29,9 +29,9 @@ class EmergencyContactsPage extends StatelessWidget {
       body: Obx(
         () {
           return ListView.builder(
-            itemCount: controller.contacts.length,
+            itemCount: controller.emergencyContacts.length,
             itemBuilder: (context, index) {
-              var contact = controller.contacts[index];
+              var contact = controller.emergencyContacts[index];
               return ListTile(
                 contentPadding: EdgeInsets.symmetric(
                     horizontal: 16.0,
@@ -176,10 +176,10 @@ class EmergencyContactsPage extends StatelessWidget {
 
   // Edit Contact Dialog
   void _showEditDialog(BuildContext context, int index) {
-    final TextEditingController nameController =
-        TextEditingController(text: controller.contacts[index]['name']);
-    final TextEditingController numberController =
-        TextEditingController(text: controller.contacts[index]['number']);
+    final TextEditingController nameController = TextEditingController(
+        text: controller.emergencyContacts[index]['name']);
+    final TextEditingController numberController = TextEditingController(
+        text: controller.emergencyContacts[index]['number']);
     final _formKey = GlobalKey<FormState>(); // Key for form validation
 
     showDialog(

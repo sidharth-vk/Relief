@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:relief/screens/settings/EmergencyContactPage.dart';
+import 'package:relief/screens/settings/EmergencySOSMessagePage.dart';
 
 class Settingpage extends StatelessWidget {
   const Settingpage({super.key});
@@ -142,14 +143,14 @@ class Settingpage extends StatelessWidget {
                 leading: const Icon(Icons.message),
                 title: const Text("SOS Message"),
                 trailing: const Icon(Icons.arrow_forward_ios),
-                // onTap: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => const DNSOSMessagePage(),
-                //     ),
-                //   );
-                // },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Emergencysosmessagepage(),
+                    ),
+                  );
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.location_on),
