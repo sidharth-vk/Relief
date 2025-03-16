@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:relief/screens/HomePage.dart';
 import 'package:relief/screens/MainPage.dart';
 
 void main() {

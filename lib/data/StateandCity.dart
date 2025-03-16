@@ -46,7 +46,14 @@ final Map<String, List<String>> citiesMap = {
   'Himachal Pradesh': ['Shimla', 'Manali', 'Dharamshala', 'Kullu'],
   'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Hazaribagh'],
   'Karnataka': ['Bengaluru', 'Mysuru', 'Hubballi', 'Mangalore'],
-  'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Kottayam'],
+  'Kerala': [
+    'Thiruvananthapuram',
+    'Kochi',
+    'Kozhikode',
+    'Kottayam',
+    'Kannur',
+    'Kozhikode'
+  ],
   'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Ujjain'],
   'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik'],
   'Manipur': ['Imphal', 'Thoubal'],
