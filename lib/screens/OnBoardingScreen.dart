@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
@@ -15,9 +14,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // List of images to display in the background carousel
   List<String> imageUrls = [
-    'https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=',
-    'https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D',
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg',
+    "assets/onboarding/three.jpg",
+    "assets/onboarding/one.jpg",
+    "assets/onboarding/four.jpg"
   ];
 
   // List of text items to display in the text carousel
@@ -57,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemCount: imageUrls.length,
             carouselController: controller,
             itemBuilder: (context, index, realIndex) {
-              return Image.network(
+              return Image.asset(
                 imageUrls[index],
                 fit: BoxFit.cover,
               );
@@ -166,7 +165,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           // Action on Get Started button click
-                          Get.to(MainPage());
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (builder) => MainPage()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF98B857),

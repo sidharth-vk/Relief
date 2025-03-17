@@ -19,7 +19,7 @@ void main() async {
 
   // get Location
   final LocationController locationController = Get.put(LocationController());
-  locationController.loadLocation();
+  locationController.updateLocation();
 
   // fetch weather
   final WeatherController weathercontroller = Get.put(WeatherController());

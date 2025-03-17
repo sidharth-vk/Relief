@@ -123,7 +123,7 @@ class WeatherWidget extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: 27,
-                    width: 30,
+                    width: 50,
                     child: Image.network(
                       iconUrl,
                       fit: BoxFit.none,

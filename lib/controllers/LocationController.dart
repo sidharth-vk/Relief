@@ -17,6 +17,7 @@ class LocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getCurrentLocation();
     loadLocation();
   }
 
@@ -85,5 +86,15 @@ class LocationController extends GetxController {
     } catch (e) {
       print('Error getting address: $e');
     }
+  }
+
+  // New method to update location every time you open the app
+  Future<void> updateLocation() async {
+    // Reset the stored data to null
+    _box.remove('latitude');
+    _box.remove('longitude');
+
+    // Call getCurrentLocation to fetch the latest location
+    await getCurrentLocation();
   }
 }

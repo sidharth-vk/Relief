@@ -30,6 +30,12 @@ class _TimerPageState extends State<TimerPage> {
     List<String> recipients =
         emergencyContacts.map((contact) => contact['number']!).toList();
 
+    if (emergencyContacts.isEmpty) {
+      Get.snackbar(
+          "No Emergency Number", "Please create an emergency number list");
+      return;
+    }
+
     try {
       // Use flutter_sms to send SMS (opens the default SMS app)
       await sendSMS(
