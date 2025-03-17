@@ -6,12 +6,13 @@ import 'package:relief/screens/widgets/CustomStateandCitydropdown.dart';
 import 'package:relief/screens/widgets/CustomTextField.dart';
 import 'package:relief/screens/widgets/FileItemWidget.dart';
 
+// ignore: must_be_immutable
 class Damageassistance extends StatelessWidget {
   TextEditingController _controllertext = TextEditingController();
   final DamageAssistanceController _controller =
       Get.put(DamageAssistanceController());
-  final StateCityController _stateCitycontroller =
-      Get.put(StateCityController());
+
+  Damageassistance({super.key});
 
   @override
   Widget build(BuildContext context) {

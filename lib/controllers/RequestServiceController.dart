@@ -30,7 +30,6 @@ class RSCImageController extends GetxController {
   }
 
   // Image picker instance
-  final ImagePicker _picker = ImagePicker();
 
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();

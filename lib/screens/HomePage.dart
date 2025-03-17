@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:relief/controllers/LocationController.dart';
+import 'package:relief/controllers/weatherController.dart';
 import 'package:relief/screens/widgets/ActiveAlertsBox.dart';
 import 'package:relief/screens/widgets/DisasterReliefBox.dart';
 import 'package:relief/screens/widgets/PreparednessGuideWidget.dart';
 import 'package:relief/screens/widgets/Weather.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final LocationController locationController = Get.put(LocationController());
+  final WeatherController weathercontroller = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,24 +38,34 @@ class HomePage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            WidgetSpan(
-                              alignment: PlaceholderAlignment.middle,
-                              child: Icon(
-                                Icons.location_on,
-                                size: 15,
-                                color: Colors.green,
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' Calicut, Kerala',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 15),
-                            ),
-                          ],
-                        ),
+                      Obx(
+                        () {
+                          return locationController.latitude.value == 0.0
+                              ? Shimmer.fromColors(
+                                  child: Text("Loading"),
+                                  baseColor: Colors.black,
+                                  highlightColor: Colors.white10)
+                              : RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Icon(
+                                          Icons.location_on,
+                                          size: 15,
+                                          color: Colors.green,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                            ' ${locationController.city.value}, ${locationController.state.value}',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                        },
                       ),
                     ],
                   ),
@@ -89,13 +104,15 @@ class HomePage extends StatelessWidget {
               Row(
                 children: [
                   // WeatherWidget with equal width
-                  Expanded(
-                    child: WeatherWidget(
-                      weatherType: 'thunderstorm',
-                      temperature: 25.3,
-                      location: 'New York',
-                    ),
-                  ),
+                  Obx(() {
+                    return Expanded(
+                      child: WeatherWidget(
+                        weatherType: weathercontroller.weatherType.value,
+                        temperature: weathercontroller.temperature.value,
+                        location: locationController.city.value,
+                      ),
+                    );
+                  }),
                   SizedBox(
                     width: 10,
                   ),

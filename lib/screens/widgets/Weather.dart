@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_icons/flutter_animated_icons.dart'; // For animated weather icons
+import 'package:get/get.dart';
+import 'package:relief/controllers/weatherController.dart';
 
 class WeatherWidget extends StatelessWidget {
   final String weatherType;
@@ -14,6 +15,9 @@ class WeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WeatherController weathercontroller = Get.put(WeatherController());
+    String iconUrl =
+        'https://openweathermap.org/img/wn/${weathercontroller.weatherIcon.value}.png';
     // Set the background color based on weather condition
     Color fontcolor;
     String backgroundimage;
@@ -27,7 +31,7 @@ class WeatherWidget extends StatelessWidget {
         weatherIcon = AnimatedIcons.ellipsis_search; // Animated sunny icon
         conditionText = "Clear Sky";
         break;
-      case 'cloud':
+      case 'clouds':
         fontcolor = Colors.white;
         backgroundimage = "assets/weather/cloudy.jpg";
         weatherIcon = AnimatedIcons.arrow_menu; // Animated cloud icon
@@ -52,7 +56,7 @@ class WeatherWidget extends StatelessWidget {
         weatherIcon = AnimatedIcons.play_pause; // Animated snow icon
         conditionText = "Snow";
         break;
-      case 'fog':
+      case 'atmosphere':
         fontcolor = Colors.white;
         backgroundimage = "assets/weather/foggy.jpg";
         weatherIcon = AnimatedIcons.menu_close; // Animated fog icon
@@ -117,11 +121,13 @@ class WeatherWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  AnimatedIcon(
-                    icon: weatherIcon,
-                    progress: AlwaysStoppedAnimation(1),
-                    size: 40,
-                    color: fontcolor,
+                  SizedBox(
+                    height: 27,
+                    width: 30,
+                    child: Image.network(
+                      iconUrl,
+                      fit: BoxFit.none,
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(

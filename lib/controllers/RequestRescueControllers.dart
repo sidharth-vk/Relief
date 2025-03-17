@@ -8,7 +8,6 @@ class RRCImageController extends GetxController {
   var rrcimages = <File>[].obs;
 
   // Image picker instance
-  final ImagePicker _picker = ImagePicker();
 
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();

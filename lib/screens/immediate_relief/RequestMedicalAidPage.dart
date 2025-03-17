@@ -5,11 +5,14 @@ import 'package:relief/controllers/StateCityController.dart';
 import 'package:relief/screens/widgets/CustomStateandCitydropdown.dart';
 import 'package:relief/screens/widgets/CustomTextField.dart';
 
+// ignore: must_be_immutable
 class Requestmedicalaidpage extends StatelessWidget {
   TextEditingController _controller = TextEditingController();
   final RMAImageController _imageController = Get.put(RMAImageController());
-  final StateCityController _stateCitycontroller =
+  final StateCityController _stateCityControllerRRC =
       Get.put(StateCityController());
+
+  Requestmedicalaidpage({super.key});
 
   @override
   Widget build(BuildContext context) {

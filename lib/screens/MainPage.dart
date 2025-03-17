@@ -6,6 +6,7 @@ import 'package:relief/screens/AlertPage.dart';
 import 'package:relief/screens/HomePage.dart';
 import 'package:relief/screens/ProfilePage.dart';
 import 'package:relief/screens/RecoverPage.dart';
+import 'package:relief/screens/SOS/sos_sender_page.dart';
 import 'package:relief/screens/SettingPage.dart';
 
 class BottomNavBarController extends GetxController {
@@ -132,7 +133,10 @@ class MainPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         backgroundColor: Colors.red,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (builder) => TimerPage()));
+        },
         child: Text(
           "SOS",
           style: TextStyle(

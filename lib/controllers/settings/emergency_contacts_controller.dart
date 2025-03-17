@@ -12,16 +12,7 @@ class EmergencySettingsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadContacts();
-  }
-
-  Future<void> loadContacts() async {
-    // Try to get the data from GetStorage
-    List? storedContacts = box.read('emergencyContact');
-    if (storedContacts != null) {
-      emergencyContacts.value = List<Map<String, String>>.from(
-          storedContacts.map((contact) => Map<String, String>.from(contact)));
-    }
+    loadData();
   }
 
   // Save contacts to GetStorage
@@ -54,9 +45,11 @@ class EmergencySettingsController extends GetxController {
   //<--------------> SOS Message <-------------->
 
   RxString sosMessage = "".obs;
+  RxBool shareLocation = false.obs;
+  RxBool shareDetails = false.obs;
 
+  // save SOS message
   Future<void> saveSosMessage() async {
-    // Save the value of sosmessage (not the RxString itself)
     await box.write('sosmessage', sosMessage.value);
     await box.save();
   }
@@ -67,11 +60,58 @@ class EmergencySettingsController extends GetxController {
     await saveSosMessage(); // Save after updating the message
   }
 
-  // Load SOS message from GetStorage
-  Future<void> loadSosMessage() async {
-    String? storedMessage = box.read('sosmessage');
-    if (storedMessage != null) {
-      sosMessage.value = storedMessage; // Update the reactive value
+  // save Share Location
+  Future<void> saveShareLocation() async {
+    await box.write('sharelocation', shareLocation.value);
+    await box.save();
+  }
+
+  // add share Location
+  Future<void> addShareLocation(bool value) async {
+    shareLocation.value = value; // Update the reactive value
+    await saveShareLocation(); // Save after updating the value
+  }
+
+  // save Share Details
+  Future<void> saveShareDetails() async {
+    await box.write('shareDetails', shareDetails.value);
+    await box.save();
+  }
+
+  // add share Details
+  Future<void> addShareDetails(bool value) async {
+    shareDetails.value = value; // Update the reactive value
+    await saveShareDetails(); // Save after updating the value
+  }
+
+  //<-------------->End SOS Message <-------------->
+  //<------------------------------------------------------>
+  //<------------------------------------------------------>
+  //<--------------> Load Data <-------------->
+
+  // Load Data
+  Future<void> loadData() async {
+    bool? storedShareLocation = box.read('sharelocation');
+    bool? storedShareDetails = box.read('shareDetails');
+    String? storedSosMessage = box.read('sosmessage');
+    List? storedContacts = box.read('emergencyContact');
+
+    // Update the reactive values if data exists
+    if (storedShareLocation != null) {
+      shareLocation.value = storedShareLocation;
+    }
+
+    if (storedShareDetails != null) {
+      shareDetails.value = storedShareDetails;
+    }
+
+    if (storedSosMessage != null) {
+      sosMessage.value = storedSosMessage;
+    }
+
+    if (storedContacts != null) {
+      emergencyContacts.value = List<Map<String, String>>.from(
+          storedContacts.map((contact) => Map<String, String>.from(contact)));
     }
   }
 }

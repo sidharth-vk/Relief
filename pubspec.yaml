@@ -35,6 +35,13 @@ dependencies:
   file_picker:
   google_fonts: ^6.2.1
   get_storage:
+  location:
+  geocoding:
+  flutter_sms: ^2.3.3
+  shimmer: ^3.0.0
+  action_slider: ^0.7.0
+  http:
+  carousel_slider: ^5.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

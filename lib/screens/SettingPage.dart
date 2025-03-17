@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:relief/controllers/theme/ThemeController.dart';
 import 'package:relief/screens/settings/EmergencyContactPage.dart';
 import 'package:relief/screens/settings/EmergencySOSMessagePage.dart';
 
 class Settingpage extends StatelessWidget {
-  const Settingpage({super.key});
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +30,15 @@ class Settingpage extends StatelessWidget {
                 leading: const Icon(Icons.brightness_6),
                 title: const Text("Theme"),
                 subtitle: const Text("Light / Dark Mode"),
-                // trailing: Switch(
-                //   value: _isDarkMode,
-                //   onChanged: (value) {
-                //     _toggleTheme(value);
-                //   },
-                // ),
+                // trailing: Obx(() {
+                //   return Switch(
+                //     value: themeController.themeMode.value == ThemeMode.dark,
+                //     onChanged: (value) {
+                //       themeController
+                //           .toggleTheme(); // Toggle the theme on switch change
+                //     },
+                //   );
+                // }),
               ),
               ListTile(
                 leading: const Icon(Icons.language),

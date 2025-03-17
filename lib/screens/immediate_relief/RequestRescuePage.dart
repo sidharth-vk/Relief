@@ -5,11 +5,14 @@ import 'package:relief/controllers/StateCityController.dart';
 import 'package:relief/screens/widgets/CustomStateandCitydropdown.dart';
 import 'package:relief/screens/widgets/CustomTextField.dart';
 
+// ignore: must_be_immutable
 class Requestrescuepage extends StatelessWidget {
   TextEditingController _controller = TextEditingController();
   final RRCImageController _imageController = Get.put(RRCImageController());
   final StateCityController _stateCityControllerRRC =
       Get.put(StateCityController());
+
+  Requestrescuepage({super.key});
 
   @override
   Widget build(BuildContext context) {

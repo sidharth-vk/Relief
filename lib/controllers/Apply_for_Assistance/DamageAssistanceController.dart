@@ -28,9 +28,6 @@ class DamageAssistanceController extends GetxController {
     "Other Damage"
   ];
 
-  // Image picker instance
-  final ImagePicker _picker = ImagePicker();
-
   Future<void> pickIDImage() async {
     final ImagePicker _pickerID = ImagePicker();
 

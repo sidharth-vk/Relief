@@ -8,7 +8,6 @@ class RMAImageController extends GetxController {
   var rmaimages = <File>[].obs;
 
   // Image picker instance
-  final ImagePicker _picker = ImagePicker();
 
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
