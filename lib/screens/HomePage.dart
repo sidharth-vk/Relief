@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relief/controllers/LocationController.dart';
-import 'package:relief/controllers/weatherController.dart';
+import 'package:relief/controllers/Weather_and_Location/LocationController.dart';
+import 'package:relief/controllers/Weather_and_Location/weatherController.dart';
 import 'package:relief/screens/widgets/ActiveAlertsBox.dart';
 import 'package:relief/screens/widgets/DisasterReliefBox.dart';
 import 'package:relief/screens/widgets/PreparednessGuideWidget.dart';

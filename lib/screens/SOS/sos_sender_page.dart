@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relief/controllers/LocationController.dart';
+import 'package:relief/controllers/Weather_and_Location/LocationController.dart';
 import 'package:relief/controllers/settings/emergency_contacts_controller.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'package:action_slider/action_slider.dart';

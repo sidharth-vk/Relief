@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:relief/controllers/AuthController.dart';
 import 'package:relief/screens/AlertPage.dart';
 import 'package:relief/screens/HomePage.dart';
 import 'package:relief/screens/ProfilePage.dart';
@@ -15,7 +16,7 @@ class BottomNavBarController extends GetxController {
 
 class MainPage extends StatelessWidget {
   final BottomNavBarController _controller = Get.put(BottomNavBarController());
-
+  AuthController authcontroller = Get.put(AuthController());
   // List of icons for the bottom navigation bar
   final List<IconData> iconList = [
     Icons.home,
@@ -77,9 +78,7 @@ class MainPage extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  // Handle logout tap
-                  print('Logout selected');
-                  Navigator.pop(context); // Close the bottom sheet
+                  authcontroller.logout();
                 },
               ),
             ],

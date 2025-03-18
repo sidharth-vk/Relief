@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relief/controllers/LocationController.dart';
+import 'package:relief/controllers/Weather_and_Location/LocationController.dart';
 import 'package:relief/controllers/settings/emergency_contacts_controller.dart';
 import 'package:relief/controllers/theme/AppThemes.dart';
 import 'package:relief/controllers/theme/ThemeController.dart';
-import 'package:relief/controllers/weatherController.dart';
+import 'package:relief/controllers/Weather_and_Location/weatherController.dart';
 import 'package:relief/screens/MainPage.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:relief/screens/OnBoardingScreen.dart';
+import 'package:relief/screens/secondaryPages/OnBoardingScreen.dart';
+import 'package:relief/screens/secondaryPages/SplashScreen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         theme: AppThemes.lightTheme,
         darkTheme: AppThemes.darkTheme,
         themeMode: themeController.themeMode.value,
-        home: OnboardingScreen(),
+        home: SplashScreen(),
       );
     });
   }

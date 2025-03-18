@@ -49,6 +49,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   animated_bottom_navigation_bar: ^1.4.0
   get: ^4.7.2
+  dio:
 
 dev_dependencies:
   flutter_test:

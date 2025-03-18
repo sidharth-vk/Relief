@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relief/controllers/weatherController.dart';
+import 'package:relief/controllers/Weather_and_Location/weatherController.dart';
 
 class WeatherWidget extends StatelessWidget {
   final String weatherType;

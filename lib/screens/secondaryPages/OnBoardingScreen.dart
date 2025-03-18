@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
-import 'package:relief/screens/MainPage.dart';
+import 'package:relief/controllers/OnboardingController.dart';
+import 'package:relief/screens/auth/LoginScreen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   // Carousel Controller
   CarouselSliderController controller = CarouselSliderController();
+  final OnboardingController onboardingcontroller =
+      Get.put(OnboardingController());
 
   // List of images to display in the background carousel
   List<String> imageUrls = [
@@ -164,11 +167,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Action on Get Started button click
+                          onboardingcontroller.completeOnboarding();
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (builder) => MainPage()));
+                                  builder: (builder) => Loginscreen()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF98B857),
