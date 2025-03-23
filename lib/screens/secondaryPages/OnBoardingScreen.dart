@@ -167,7 +167,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          onboardingcontroller.completeOnboarding();
+                          onboardingcontroller.isFirstTimeUser.value = false;
+
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

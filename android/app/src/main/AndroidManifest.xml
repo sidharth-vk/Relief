@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Optional -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
 
 
 
@@ -17,6 +19,20 @@
         android:label="relief"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <service
+        android:name="com.google.firebase.messaging.FirebaseMessagingService"
+        android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Optional: For local notifications -->
+        <meta-data
+        android:name="com.google.firebase.messaging.default_notification_channel_id"
+        android:value="high_importance_channel" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "86260336615",
+    "firebase_url": "https://gps-and-vibration-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gps-and-vibration",
+    "storage_bucket": "gps-and-vibration.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86260336615:android:d545fce5965b9691029f42",
+        "android_client_info": {
+          "package_name": "com.example.relief"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA98XIkQ2uu0c0eMY1RqadK8tEGmSn97FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

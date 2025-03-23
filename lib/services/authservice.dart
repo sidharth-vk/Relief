@@ -33,14 +33,34 @@ class ApiService {
   Future<Map<String, dynamic>> register(
       String username, String password, String email) async {
     try {
-      dio.Response response = await _dio.post('api/users/register/', data: {
-        'username': username,
-        'password': password,
-        'email': email,
-      });
+      dio.Response response = await _dio.post(
+        'api/users/register/', // Your Django endpoint
+        data: {
+          'username': username,
+          'password': password,
+          'email': email,
+        },
+      );
 
-      return response.data;
+      // If successful, return the response data as Map
+      return response.data as Map<String, dynamic>;
+    } on dio.DioException catch (e) {
+      // Handle Dio-specific errors
+      if (e.response != null) {
+        // If the API returned an error response (like 400 Bad Request)
+        final errorData = e.response!.data as Map<String, dynamic>;
+        if (errorData.containsKey('error')) {
+          // Throw the specific error message from Django API
+          throw Exception(errorData['error']);
+        } else {
+          throw Exception("Registration failed: ${e.response!.statusMessage}");
+        }
+      } else {
+        // Network error or no response
+        throw Exception("Registration failed: Network error - ${e.message}");
+      }
     } catch (e) {
+      // Handle any other unexpected errors
       throw Exception("Registration failed: $e");
     }
   }

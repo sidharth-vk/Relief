@@ -7,12 +7,99 @@ import 'package:relief/screens/widgets/CustomTextField.dart';
 
 // ignore: must_be_immutable
 class Requestrescuepage extends StatelessWidget {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _namecontroller = TextEditingController();
+  final TextEditingController _explanationcontroller = TextEditingController();
+  final TextEditingController _additional_informationcontroller =
+      TextEditingController();
+  final TextEditingController _addresscontroller = TextEditingController();
+  final TextEditingController _phone_numbercontroller = TextEditingController();
   final RRCImageController _imageController = Get.put(RRCImageController());
   final StateCityController _stateCityControllerRRC =
       Get.put(StateCityController());
+  final UploadRequestRescue uploadRequestRescue =
+      Get.put(UploadRequestRescue());
 
   Requestrescuepage({super.key});
+
+  // Validation function
+  bool _validateForm() {
+    if (_namecontroller.text.trim().isEmpty) {
+      Get.snackbar('Error', 'Name is required',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_namecontroller.text.trim().length < 2) {
+      Get.snackbar('Error', 'Name must be at least 2 characters long',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_explanationcontroller.text.trim().isEmpty) {
+      Get.snackbar('Error', 'Situation explanation is required',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_explanationcontroller.text.trim().length < 10) {
+      Get.snackbar('Error', 'Explanation must be at least 10 characters long',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_addresscontroller.text.trim().isEmpty) {
+      Get.snackbar('Error', 'Address is required',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_stateCityControllerRRC.selectedState.value.isEmpty) {
+      Get.snackbar('Error', 'Please select a state',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_stateCityControllerRRC.selectedCity.value.isEmpty) {
+      Get.snackbar('Error', 'Please select a city',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    if (_phone_numbercontroller.text.trim().isEmpty) {
+      Get.snackbar('Error', 'Phone number is required',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    // Phone number validation (assuming Indian numbers - 10 digits)
+    final phoneRegex = RegExp(r'^[6-9]\d{9}$');
+    if (!phoneRegex.hasMatch(_phone_numbercontroller.text.trim())) {
+      Get.snackbar('Error',
+          'Please enter a valid 10-digit phone number starting with 6-9',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return false;
+    }
+
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +123,23 @@ class Requestrescuepage extends StatelessWidget {
                   "Name :",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 CustomTextField(
-                  controller: _controller,
+                  controller: _namecontroller,
                   hintText: "Fullname",
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
                   "Explain the Situation :",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 CustomTextField(
-                  controller: _controller,
+                  controller: _explanationcontroller,
                   hintText: "Explain the Situation",
                   MaxLines: 5,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Obx(() {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,16 +161,13 @@ class Requestrescuepage extends StatelessWidget {
                     ],
                   );
                 }),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 Obx(
                   () {
                     return _imageController.rrcimages.isEmpty
                         ? Center(child: Text("No images selected"))
                         : GridView.builder(
-                            shrinkWrap:
-                                true, // Use shrinkWrap to prevent overflow
+                            shrinkWrap: true,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
@@ -101,10 +177,8 @@ class Requestrescuepage extends StatelessWidget {
                             itemCount: _imageController.rrcimages.length,
                             itemBuilder: (context, index) {
                               return Stack(
-                                clipBehavior: Clip
-                                    .none, // Allow content to overflow for the cross button
+                                clipBehavior: Clip.none,
                                 children: [
-                                  // Image container
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(
@@ -114,13 +188,12 @@ class Requestrescuepage extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  // Cross button to remove the image
                                   Positioned(
                                     top: 5,
                                     right: 25,
                                     child: GestureDetector(
-                                      onTap: () => _imageController.removeImage(
-                                          index), // Remove image when clicked
+                                      onTap: () =>
+                                          _imageController.removeImage(index),
                                       child: CircleAvatar(
                                         radius: 12,
                                         backgroundColor: Colors.red,
@@ -138,68 +211,59 @@ class Requestrescuepage extends StatelessWidget {
                           );
                   },
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
-                  "Additinal Information :",
+                  "Additional Information :",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 CustomTextField(
-                  controller: _controller,
+                  controller: _additional_informationcontroller,
                   hintText: "Additional Information",
                   MaxLines: 5,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
                   "Address :",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 CustomTextField(
-                  controller: _controller,
+                  controller: _addresscontroller,
                   hintText: "Address",
                   MaxLines: 3,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 StateCityDropdown(),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Text(
                   "Phone Number :",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 CustomTextField(
-                  controller: _controller,
+                  controller: _phone_numbercontroller,
                   hintText: "Phone Number",
                   prefix: Text("+91 "),
+                  keyboardType: TextInputType.phone, // Added for better UX
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      print(
-                          'State: ${_stateCityControllerRRC.selectedState.value}');
-                      print(
-                          'City: ${_stateCityControllerRRC.selectedCity.value}');
+                      if (_validateForm()) {
+                        var name = _namecontroller.text.trim();
+                        var es = _explanationcontroller.text.trim();
+                        var ai = _additional_informationcontroller.text.trim();
+                        var address = _addresscontroller.text.trim();
+                        var state = _stateCityControllerRRC.selectedState.value;
+                        var city = _stateCityControllerRRC.selectedCity.value;
+                        var phone = _phone_numbercontroller.text.trim();
 
-                      print(_imageController.rrcimages);
+                        uploadRequestRescue.upload(
+                            name, es, ai, address, state, city, phone);
+                      }
                     },
                     style: ButtonStyle(
                         backgroundColor:

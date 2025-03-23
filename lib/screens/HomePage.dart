@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:relief/controllers/AuthController.dart';
 import 'package:relief/controllers/Weather_and_Location/LocationController.dart';
 import 'package:relief/controllers/Weather_and_Location/weatherController.dart';
 import 'package:relief/screens/widgets/ActiveAlertsBox.dart';
@@ -11,6 +12,7 @@ import 'package:shimmer/shimmer.dart';
 class HomePage extends StatelessWidget {
   final LocationController locationController = Get.put(LocationController());
   final WeatherController weathercontroller = Get.put(WeatherController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class HomePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    child: Text("U"),
+                    child: Text(authController.userName.value[0]
+                        .toString()
+                        .toUpperCase()),
                   ),
                   SizedBox(
                     width: 20,
@@ -34,7 +38,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hello User!",
+                        "Hello ${authController.userName.value}!",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:relief/controllers/AuthController.dart';
 import 'package:relief/screens/MainPage.dart';
+import 'package:relief/screens/auth/LoginScreen.dart';
 import 'package:relief/screens/widgets/CustomTextField.dart';
 
 class Registerscreen extends StatelessWidget {
@@ -41,21 +42,11 @@ class Registerscreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  height: 40,
-                ),
                 CustomTextField(hintText: "Email", controller: _email),
                 SizedBox(
                   height: 20,
                 ),
                 CustomTextField(hintText: "Password", controller: _password),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                        onPressed: () {}, child: Text("Forget Password?"))
-                  ],
-                ),
                 SizedBox(
                   height: 30,
                 ),
@@ -76,7 +67,7 @@ class Registerscreen extends StatelessWidget {
                                   backgroundColor: WidgetStateProperty.all(
                                       Color(0xFF98B857))),
                               child: Text(
-                                "Log in",
+                                "Register Now ",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -90,13 +81,15 @@ class Registerscreen extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     children: [
-                      WidgetSpan(child: Text("Create an Account")),
+                      WidgetSpan(child: Text("Already have an account")),
                       TextSpan(text: "  "),
                       WidgetSpan(
                           child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAll(Loginscreen());
+                        },
                         child: Text(
-                          "Register Now",
+                          "Login Now",
                           style: TextStyle(color: Colors.blue),
                         ),
                       ))

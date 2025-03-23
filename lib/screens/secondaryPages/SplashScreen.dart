@@ -61,14 +61,53 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue, // Background color
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Scaffold(
+        body: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Center content vertically
           children: [
-            // Add your logo here (optional)
-            // Image.asset('assets/splash_logo.png'),
-            SizedBox(height: 20),
-            CircularProgressIndicator(), // Optional loading indicator
+            // Centered Logo
+            Center(
+              child: Text(""),
+            ),
+            Spacer(),
+            Center(
+              child: Image.asset(
+                'assets/images/splashscreen_logo.png', // Replace with your logo image
+                height: 250, // Adjust logo size as needed
+                width: 250,
+              ),
+            ),
+            SizedBox(height: 30), // Space between logo and title
+            // App Title Text at the bottom
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Column(
+                children: [
+                  // App Name Text
+                  Text(
+                    'Disasternet',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  // App Description Text
+                  Text(
+                    'Monitoring & Emergency Disaster Help',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

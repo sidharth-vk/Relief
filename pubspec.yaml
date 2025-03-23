@@ -33,7 +33,7 @@ dependencies:
   flutter_animated_icons:
   image_picker: ^1.1.2
   file_picker:
-  google_fonts: ^6.2.1
+  google_fonts: 4.0.4
   get_storage:
   location:
   geocoding:
@@ -42,6 +42,12 @@ dependencies:
   action_slider: ^0.7.0
   http:
   carousel_slider: ^5.0.0
+
+  firebase: ^9.0.3
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
+
+  flutter_local_notifications:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -77,6 +83,7 @@ flutter:
   assets:
     - assets/weather/ 
     - assets/onboarding/ 
+    - assets/images/ 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
